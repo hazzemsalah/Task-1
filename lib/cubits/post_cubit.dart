@@ -23,24 +23,31 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
-  void deletePostVisability(int postId) {
+  void deletePostVisability(int postId) async {
     final currentState = state;
     if (currentState is PostLoaded) {
-      final List<PostModel> updatedPosts = currentState.posts.map((post) {
-        if (post.id == postId) {
-          return post.copyWith(hidden: !post.hidden);
+      emit(PostUpdating(posts: currentState.posts, updatingPostId: postId));
+
+      try {
+        await postService.deletePost(postId);
+
+        final List<PostModel> updatedPosts = currentState.posts.map((post) {
+          if (post.id == postId) {
+            return post.copyWith(hidden: !post.hidden);
+          }
+          return post;
+        }).toList();
+
+        if (updatedPosts.any((post) => post.id == postId && post.hidden)) {
+          hiddenPostIds.add(postId);
+        } else {
+          hiddenPostIds.remove(postId);
         }
-        return post;
-      }).toList();
 
-      if (updatedPosts.any((post) => post.id == postId && post.hidden)) {
-        hiddenPostIds.add(postId);
-      } else {
-        hiddenPostIds.remove(postId);
+        emit(PostLoaded(posts: updatedPosts));
+      } catch (e) {
+        emit(PostError(message: 'Failed to delete post: $e'));
       }
-
-      fetchPosts();
     }
   }
 }
-

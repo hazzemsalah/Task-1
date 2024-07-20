@@ -16,11 +16,12 @@ class HomePage extends StatelessWidget {
         builder: (context, state) {
           if (state is PostLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state is PostLoaded) {
+          } else if (state is PostLoaded || state is PostUpdating) {
+            final posts = state is PostLoaded ? state.posts : (state as PostUpdating).posts;
             return ListView.builder(
-              itemCount: state.posts.length,
+              itemCount: posts.length,
               itemBuilder: (context, index) {
-                final post = state.posts[index];
+                final post = posts[index];
                 return PostCard(post: post);
               },
             );

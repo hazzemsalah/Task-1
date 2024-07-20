@@ -17,3 +17,10 @@ class PostError extends PostState {
 
   PostError({required this.message});
 }
+
+class PostUpdating extends PostState {
+  final List<PostModel> posts;
+  final int updatingPostId;
+
+  PostUpdating({required this.posts, required this.updatingPostId});
+}
