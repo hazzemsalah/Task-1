@@ -62,9 +62,12 @@ class PostCard extends StatelessWidget {
               if (isUpdating)
                 Positioned.fill(
                   child: Container(
-                    color: Colors.black45,
+                    margin: const EdgeInsets.all(12.0),
+                    color: Colors.grey.withOpacity(0.4),
                     child: const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
