@@ -1,13 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task/locator.dart';
 import 'package:task/models/post_model.dart';
 import 'package:task/services/post_service.dart';
 
 part 'post_state.dart';
 
 class PostCubit extends Cubit<PostState> {
-  final PostService postService;
+  final PostService postService = locator<PostService>();
 
-  PostCubit(this.postService) : super(PostLoading());
+  PostCubit() : super(PostLoading());
 
   List<int> hiddenPostIds = [];
 

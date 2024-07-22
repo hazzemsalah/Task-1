@@ -17,7 +17,9 @@ class HomePage extends StatelessWidget {
           if (state is PostLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is PostLoaded || state is PostUpdating) {
-            final posts = state is PostLoaded ? state.posts : (state as PostUpdating).posts;
+            final posts = state is PostLoaded
+                ? state.posts
+                : (state as PostUpdating).posts;
             return ListView.builder(
               itemCount: posts.length,
               itemBuilder: (context, index) {

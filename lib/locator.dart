@@ -5,8 +5,6 @@ import 'package:task/cubits/post_cubit.dart';
 final locator = GetIt.instance;
 
 void setupLocator() {
-
   locator.registerLazySingleton<PostService>(() => PostService());
-  locator.registerFactory<PostCubit>(() => PostCubit(locator<PostService>()));
-  
+  locator.registerFactory<PostCubit>(() => PostCubit());
 }
