@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'post_model.g.dart';
+
+@JsonSerializable()
 class PostModel {
   final int id;
   final String title;
@@ -11,14 +15,8 @@ class PostModel {
     this.hidden = false,
   });
 
-  factory PostModel.fromJson(Map<String, dynamic> json) {
-    return PostModel(
-      id: json['id'],
-      title: json['title'],
-      body: json['body'],
-      hidden: false,
-    );
-  }
+  factory PostModel.fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
+
 
   PostModel copyWith({bool? hidden}) {
     return PostModel(
