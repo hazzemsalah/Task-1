@@ -6,16 +6,14 @@ part of 'post_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PostModelImpl _$$PostModelImplFromJson(Map<String, dynamic> json) =>
-    _$PostModelImpl(
+PostModel _$PostModelFromJson(Map<String, dynamic> json) => PostModel(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       body: json['body'] as String,
       hidden: json['hidden'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'body': instance.body,
