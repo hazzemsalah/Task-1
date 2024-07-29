@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task/cubits/post_cubit.dart';
-import 'package:task/models/post_model.dart';
+import '../cubits/post_cubit.dart';
+import '../models/post_model.dart';
 
 class PostCard extends StatelessWidget {
   final PostModel post;

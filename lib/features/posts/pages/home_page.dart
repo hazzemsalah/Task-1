@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task/cubits/post_cubit.dart';
-import 'package:task/widgets/post_card.dart';
+import '../cubits/post_cubit.dart';
+import '../widgets/post_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,9 +12,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Posts'),
       ),
-      body: BlocBuilder<PostCubit, PostState>(
+      body: BlocBuilder<PostCubit, PostsState>(
         builder: (context, state) {
-          if (state is PostLoading) {
+          if (state.postsRequest == RequestState.loading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is PostLoaded || state is PostUpdating) {
             final posts = state is PostLoaded
