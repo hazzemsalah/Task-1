@@ -1,35 +1,17 @@
-class PostModel {
-  final int id;
-  final String title;
-  final String body;
-  bool hidden;
-  bool isUpdating;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  PostModel({
-    required this.id,
-    required this.title,
-    required this.body,
-    this.hidden = false,
-    this.isUpdating = false,
-  });
+part 'post_model.freezed.dart';
+part 'post_model.g.dart';
 
-  factory PostModel.fromJson(Map<String, dynamic> json) {
-    return PostModel(
-      id: json['id'],
-      title: json['title'],
-      body: json['body'],
-      hidden: false,
-      isUpdating: false,
-    );
-  }
+@freezed
+class PostModel with _$PostModel {
+  factory PostModel({
+    required int id,
+    required String title,
+    required String body,
+    @Default(false) bool hidden,
+    @Default(false) bool isUpdating,
+  }) = _PostModel;
 
-  PostModel copyWith({bool? hidden, bool? isUpdating}) {
-    return PostModel(
-      id: id,
-      title: title,
-      body: body,
-      hidden: hidden ?? this.hidden,
-      isUpdating: isUpdating ?? this.isUpdating,
-    );
-  }
+  factory PostModel.fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
 }
