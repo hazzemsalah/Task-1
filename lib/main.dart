@@ -6,6 +6,7 @@ import 'package:task/pages/home_page.dart';
 
 void main() {
   setupLocator();
+  
   runApp(const PostsApp());
 }
 
