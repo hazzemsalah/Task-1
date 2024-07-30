@@ -3,12 +3,14 @@ class PostModel {
   final String title;
   final String body;
   bool hidden;
+  bool isUpdating;
 
   PostModel({
     required this.id,
     required this.title,
     required this.body,
     this.hidden = false,
+    this.isUpdating = false,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
@@ -17,15 +19,17 @@ class PostModel {
       title: json['title'],
       body: json['body'],
       hidden: false,
+      isUpdating: false,
     );
   }
 
-  PostModel copyWith({bool? hidden}) {
+  PostModel copyWith({bool? hidden, bool? isUpdating}) {
     return PostModel(
       id: id,
       title: title,
       body: body,
       hidden: hidden ?? this.hidden,
+      isUpdating: isUpdating ?? this.isUpdating,
     );
   }
 }

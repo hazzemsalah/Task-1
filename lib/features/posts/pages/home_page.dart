@@ -16,19 +16,16 @@ class HomePage extends StatelessWidget {
         builder: (context, state) {
           if (state.postsRequest == RequestState.loading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state is PostLoaded || state is PostUpdating) {
-            final posts = state is PostLoaded
-                ? state.posts
-                : (state as PostUpdating).posts;
+          } else if (state.postsRequest == RequestState.success) {
             return ListView.builder(
-              itemCount: posts.length,
+              itemCount: state.posts.length,
               itemBuilder: (context, index) {
-                final post = posts[index];
+                final post = state.posts[index];
                 return PostCard(post: post);
               },
             );
-          } else if (state is PostError) {
-            return Center(child: Text(state.message));
+          } else if (state.postsRequest == RequestState.error) {
+            return Center(child: Text(state.errorMessage));
           } else {
             return const Center(child: Text('Unknown state'));
           }

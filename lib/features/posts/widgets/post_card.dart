@@ -10,12 +10,8 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postCubit = BlocProvider.of<PostCubit>(context);
-    final state = postCubit.state;
 
-    bool isUpdating = false;
-    if (state is PostUpdating && state.updatingPostId == post.id) {
-      isUpdating = true;
-    }
+    bool isUpdating = post.isUpdating;
 
     return post.hidden
         ? const SizedBox()
@@ -55,7 +51,7 @@ class PostCard extends StatelessWidget {
                 child: IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () {
-                    postCubit.deletePostVisability(post.id);
+                    postCubit.deletePostVisibility(post.id);
                   },
                 ),
               ),

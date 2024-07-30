@@ -27,32 +27,37 @@ class PostCubit extends Cubit<PostsState> {
       );
     }
   }
+  // this method handle the next cases:
+  //    - Show loading indicator for the deleting specific post
+  //    - Make the backend call to delete the post 
+  //    - Update the state after deletion
 
-  // void deletePostVisability(int postId) async {
-  //   final currentState = state;
-  //   if (currentState is PostLoaded) {
-  //     emit(PostUpdating(posts: currentState.posts, updatingPostId: postId));
+  void deletePostVisibility(int postId) async {
+    // Show loading indicator for the specific post
+    final updatedPosts = state.posts.map((post) {
+      if (post.id == postId) {
+        return post.copyWith(isUpdating: true);
+      }
+      return post;
+    }).toList();
+    emit(state.copyWith(posts: updatedPosts));
 
-  //     try {
-  //       await postService.deletePost(postId);
+    try {
+      // Make the backend call to delete the post
+      await postService.deletePost(postId);
 
-  //       final List<PostModel> updatedPosts = currentState.posts.map((post) {
-  //         if (post.id == postId) {
-  //           return post.copyWith(hidden: !post.hidden);
-  //         }
-  //         return post;
-  //       }).toList();
-
-  //       if (updatedPosts.any((post) => post.id == postId && post.hidden)) {
-  //         hiddenPostIds.add(postId);
-  //       } else {
-  //         hiddenPostIds.remove(postId);
-  //       }
-
-  //       emit(PostLoaded(posts: updatedPosts));
-  //     } catch (e) {
-  //       emit(PostError(message: 'Failed to delete post: $e'));
-  //     }
-  //   }
-  // }
+      // Update the state after deletion
+      final finalPosts = state.posts.where((post) => post.id != postId).toList();
+      hiddenPostIds.add(postId);
+      emit(state.copyWith(postsRequest: RequestState.success, posts: finalPosts));
+    } catch (e) {
+      // Handle the error
+      emit(
+        state.copyWith(
+          postsRequest: RequestState.error,
+          errorMessage: 'Failed to delete post: $e',
+        ),
+      );
+    }
+  }
 }
