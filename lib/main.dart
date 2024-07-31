@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task/cubits/post_cubit.dart';
-import 'package:task/locator.dart';
-import 'package:task/pages/home_page.dart';
+import 'features/posts/cubits/post_cubit.dart';
+import 'locator.dart';
+import 'features/posts/pages/home_page.dart';
 
-void main() {
-  setupLocator();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
   runApp(const PostsApp());
 }
 

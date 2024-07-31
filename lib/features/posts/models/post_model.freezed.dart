@@ -24,6 +24,10 @@ mixin _$PostModel {
   String get title => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
   bool get hidden => throw _privateConstructorUsedError;
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
+=======
+  bool get isUpdating => throw _privateConstructorUsedError;
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,11 @@ abstract class $PostModelCopyWith<$Res> {
   factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) then) =
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
   $Res call({int id, String title, String body, bool hidden});
+=======
+  $Res call({int id, String title, String body, bool hidden, bool isUpdating});
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
 }
 
 /// @nodoc
@@ -56,6 +64,10 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? title = null,
     Object? body = null,
     Object? hidden = null,
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
+=======
+    Object? isUpdating = null,
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -74,6 +86,13 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.hidden
           : hidden // ignore: cast_nullable_to_non_nullable
               as bool,
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
+=======
+      isUpdating: null == isUpdating
+          ? _value.isUpdating
+          : isUpdating // ignore: cast_nullable_to_non_nullable
+              as bool,
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
     ) as $Val);
   }
 }
@@ -86,7 +105,11 @@ abstract class _$$PostModelImplCopyWith<$Res>
       __$$PostModelImplCopyWithImpl<$Res>;
   @override
   @useResult
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
   $Res call({int id, String title, String body, bool hidden});
+=======
+  $Res call({int id, String title, String body, bool hidden, bool isUpdating});
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
 }
 
 /// @nodoc
@@ -104,6 +127,10 @@ class __$$PostModelImplCopyWithImpl<$Res>
     Object? title = null,
     Object? body = null,
     Object? hidden = null,
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
+=======
+    Object? isUpdating = null,
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
   }) {
     return _then(_$PostModelImpl(
       id: null == id
@@ -122,6 +149,13 @@ class __$$PostModelImplCopyWithImpl<$Res>
           ? _value.hidden
           : hidden // ignore: cast_nullable_to_non_nullable
               as bool,
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
+=======
+      isUpdating: null == isUpdating
+          ? _value.isUpdating
+          : isUpdating // ignore: cast_nullable_to_non_nullable
+              as bool,
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
     ));
   }
 }
@@ -129,11 +163,20 @@ class __$$PostModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PostModelImpl implements _PostModel {
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
   const _$PostModelImpl(
       {required this.id,
       required this.title,
       required this.body,
       this.hidden = false});
+=======
+  _$PostModelImpl(
+      {required this.id,
+      required this.title,
+      required this.body,
+      this.hidden = false,
+      this.isUpdating = false});
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
 
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
@@ -147,10 +190,20 @@ class _$PostModelImpl implements _PostModel {
   @override
   @JsonKey()
   final bool hidden;
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
 
   @override
   String toString() {
     return 'PostModel(id: $id, title: $title, body: $body, hidden: $hidden)';
+=======
+  @override
+  @JsonKey()
+  final bool isUpdating;
+
+  @override
+  String toString() {
+    return 'PostModel(id: $id, title: $title, body: $body, hidden: $hidden, isUpdating: $isUpdating)';
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
   }
 
   @override
@@ -161,12 +214,23 @@ class _$PostModelImpl implements _PostModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
             (identical(other.hidden, hidden) || other.hidden == hidden));
+=======
+            (identical(other.hidden, hidden) || other.hidden == hidden) &&
+            (identical(other.isUpdating, isUpdating) ||
+                other.isUpdating == isUpdating));
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
   }
 
   @JsonKey(ignore: true)
   @override
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
   int get hashCode => Object.hash(runtimeType, id, title, body, hidden);
+=======
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, body, hidden, isUpdating);
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
 
   @JsonKey(ignore: true)
   @override
@@ -183,11 +247,20 @@ class _$PostModelImpl implements _PostModel {
 }
 
 abstract class _PostModel implements PostModel {
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
   const factory _PostModel(
       {required final int id,
       required final String title,
       required final String body,
       final bool hidden}) = _$PostModelImpl;
+=======
+  factory _PostModel(
+      {required final int id,
+      required final String title,
+      required final String body,
+      final bool hidden,
+      final bool isUpdating}) = _$PostModelImpl;
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$PostModelImpl.fromJson;
@@ -201,6 +274,11 @@ abstract class _PostModel implements PostModel {
   @override
   bool get hidden;
   @override
+<<<<<<< HEAD:lib/models/post_model.freezed.dart
+=======
+  bool get isUpdating;
+  @override
+>>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523:lib/features/posts/models/post_model.freezed.dart
   @JsonKey(ignore: true)
   _$$PostModelImplCopyWith<_$PostModelImpl> get copyWith =>
       throw _privateConstructorUsedError;

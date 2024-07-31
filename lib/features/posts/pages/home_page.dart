@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task/cubits/post_cubit.dart';
-import 'package:task/widgets/post_card.dart';
+import '../cubits/post_cubit.dart';
+import '../widgets/post_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,23 +12,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Posts'),
       ),
-      body: BlocBuilder<PostCubit, PostState>(
+      body: BlocBuilder<PostCubit, PostsState>(
         builder: (context, state) {
-          if (state is PostLoading) {
+          if (state.postsRequest == RequestState.loading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state is PostLoaded || state is PostUpdating) {
-            final posts = state is PostLoaded
-                ? state.posts
-                : (state as PostUpdating).posts;
+          } else if (state.postsRequest == RequestState.success) {
             return ListView.builder(
-              itemCount: posts.length,
+              itemCount: state.posts.length,
               itemBuilder: (context, index) {
-                final post = posts[index];
+                final post = state.posts[index];
                 return PostCard(post: post);
               },
             );
-          } else if (state is PostError) {
-            return Center(child: Text(state.message));
+          } else if (state.postsRequest == RequestState.error) {
+            return Center(child: Text(state.errorMessage));
           } else {
             return const Center(child: Text('Unknown state'));
           }

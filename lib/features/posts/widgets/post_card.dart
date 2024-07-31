@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task/cubits/post_cubit.dart';
-import 'package:task/models/post_model.dart';
+import '../cubits/post_cubit.dart';
+import '../models/post_model.dart';
 
 class PostCard extends StatelessWidget {
   final PostModel post;
@@ -10,12 +10,8 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postCubit = BlocProvider.of<PostCubit>(context);
-    final state = postCubit.state;
 
-    bool isUpdating = false;
-    if (state is PostUpdating && state.updatingPostId == post.id) {
-      isUpdating = true;
-    }
+    bool isUpdating = post.isUpdating;
 
     return post.hidden
         ? const SizedBox()
@@ -55,7 +51,7 @@ class PostCard extends StatelessWidget {
                 child: IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () {
-                    postCubit.deletePostVisability(post.id);
+                    postCubit.deletePostVisibility(post.id);
                   },
                 ),
               ),
