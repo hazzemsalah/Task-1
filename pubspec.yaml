@@ -46,13 +46,6 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
-<<<<<<< HEAD
-  build_runner: ^2.3.3
-  freezed: ^2.0.0
-  json_serializable: ^6.8.0
-=======
-
->>>>>>> 03d47bdc26e01e2c6ee1c3e683e6ef8e3b297523
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
