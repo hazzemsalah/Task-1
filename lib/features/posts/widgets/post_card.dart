@@ -11,8 +11,6 @@ class PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final postCubit = BlocProvider.of<PostCubit>(context);
 
-    bool isUpdating = post.isUpdating;
-
     return post.hidden
         ? const SizedBox()
         : Stack(
@@ -21,41 +19,53 @@ class PostCard extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(8.0),
                 child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          post.title,
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                  color: post.isSwitched ? Colors.grey.withOpacity(0.5) : null,
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    opacity: post.isSwitched ? 0.5 : 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            post.title,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          post.body,
-                          style: const TextStyle(
-                            color: Colors.grey,
+                          const SizedBox(height: 8.0),
+                          Text(
+                            post.body,
+                            style: TextStyle(
+                              color: post.isSwitched ? Colors.black : Colors.grey,
+                            ),
                           ),
-                        ),
-                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Switch(
+                                value: post.isSwitched,
+                                onChanged: (value) {
+                                  postCubit.reducePostOpacity(post.id);
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () {
+                                  postCubit.deletePostVisibility(post.id);
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    postCubit.deletePostVisibility(post.id);
-                  },
-                ),
-              ),
-              if (isUpdating)
+              if (post.isUpdating)
                 Positioned.fill(
                   child: Container(
                     margin: const EdgeInsets.all(12.0),

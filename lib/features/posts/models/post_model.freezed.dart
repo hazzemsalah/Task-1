@@ -25,6 +25,7 @@ mixin _$PostModel {
   String get body => throw _privateConstructorUsedError;
   bool get hidden => throw _privateConstructorUsedError;
   bool get isUpdating => throw _privateConstructorUsedError;
+  bool get isSwitched => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,13 @@ abstract class $PostModelCopyWith<$Res> {
   factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) then) =
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
-  $Res call({int id, String title, String body, bool hidden, bool isUpdating});
+  $Res call(
+      {int id,
+      String title,
+      String body,
+      bool hidden,
+      bool isUpdating,
+      bool isSwitched});
 }
 
 /// @nodoc
@@ -58,6 +65,7 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? body = null,
     Object? hidden = null,
     Object? isUpdating = null,
+    Object? isSwitched = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -80,6 +88,10 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.isUpdating
           : isUpdating // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSwitched: null == isSwitched
+          ? _value.isSwitched
+          : isSwitched // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -92,7 +104,13 @@ abstract class _$$PostModelImplCopyWith<$Res>
       __$$PostModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, String body, bool hidden, bool isUpdating});
+  $Res call(
+      {int id,
+      String title,
+      String body,
+      bool hidden,
+      bool isUpdating,
+      bool isSwitched});
 }
 
 /// @nodoc
@@ -111,6 +129,7 @@ class __$$PostModelImplCopyWithImpl<$Res>
     Object? body = null,
     Object? hidden = null,
     Object? isUpdating = null,
+    Object? isSwitched = null,
   }) {
     return _then(_$PostModelImpl(
       id: null == id
@@ -133,6 +152,10 @@ class __$$PostModelImplCopyWithImpl<$Res>
           ? _value.isUpdating
           : isUpdating // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSwitched: null == isSwitched
+          ? _value.isSwitched
+          : isSwitched // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -145,7 +168,8 @@ class _$PostModelImpl implements _PostModel {
       required this.title,
       required this.body,
       this.hidden = false,
-      this.isUpdating = false});
+      this.isUpdating = false,
+      this.isSwitched = false});
 
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
@@ -162,10 +186,13 @@ class _$PostModelImpl implements _PostModel {
   @override
   @JsonKey()
   final bool isUpdating;
+  @override
+  @JsonKey()
+  final bool isSwitched;
 
   @override
   String toString() {
-    return 'PostModel(id: $id, title: $title, body: $body, hidden: $hidden, isUpdating: $isUpdating)';
+    return 'PostModel(id: $id, title: $title, body: $body, hidden: $hidden, isUpdating: $isUpdating, isSwitched: $isSwitched)';
   }
 
   @override
@@ -178,13 +205,15 @@ class _$PostModelImpl implements _PostModel {
             (identical(other.body, body) || other.body == body) &&
             (identical(other.hidden, hidden) || other.hidden == hidden) &&
             (identical(other.isUpdating, isUpdating) ||
-                other.isUpdating == isUpdating));
+                other.isUpdating == isUpdating) &&
+            (identical(other.isSwitched, isSwitched) ||
+                other.isSwitched == isSwitched));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, body, hidden, isUpdating);
+      Object.hash(runtimeType, id, title, body, hidden, isUpdating, isSwitched);
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +235,8 @@ abstract class _PostModel implements PostModel {
       required final String title,
       required final String body,
       final bool hidden,
-      final bool isUpdating}) = _$PostModelImpl;
+      final bool isUpdating,
+      final bool isSwitched}) = _$PostModelImpl;
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$PostModelImpl.fromJson;
@@ -221,6 +251,8 @@ abstract class _PostModel implements PostModel {
   bool get hidden;
   @override
   bool get isUpdating;
+  @override
+  bool get isSwitched;
   @override
   @JsonKey(ignore: true)
   _$$PostModelImplCopyWith<_$PostModelImpl> get copyWith =>

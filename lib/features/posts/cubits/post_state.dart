@@ -2,15 +2,17 @@ part of 'post_cubit.dart';
 
 enum RequestState { initial, loading, success, error }
 
-class PostsState {
+class PostsState extends Equatable {
   final RequestState postsRequest;
   final List<PostModel> posts;
   final String errorMessage;
+
   PostsState({
     this.postsRequest = RequestState.initial,
     this.posts = const [],
     this.errorMessage = '',
   });
+
   PostsState copyWith({
     RequestState? postsRequest,
     List<PostModel>? posts,
@@ -22,4 +24,7 @@ class PostsState {
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
+
+  @override
+  List<Object?> get props => [postsRequest, posts, errorMessage];
 }

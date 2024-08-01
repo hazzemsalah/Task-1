@@ -13,6 +13,7 @@ _$PostModelImpl _$$PostModelImplFromJson(Map<String, dynamic> json) =>
       body: json['body'] as String,
       hidden: json['hidden'] as bool? ?? false,
       isUpdating: json['isUpdating'] as bool? ?? false,
+      isSwitched: json['isSwitched'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
       'body': instance.body,
       'hidden': instance.hidden,
       'isUpdating': instance.isUpdating,
+      'isSwitched': instance.isSwitched,
     };
